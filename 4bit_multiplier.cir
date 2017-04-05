@@ -1,0 +1,62 @@
+
+*
+.include 90nmModels.spi
+
+
+*.include 22nm.spi
+*.param sup=0.7
+*.param Lwid=0.02u
+
+.SUBCKT NMOS d g s W=5u L=1u
+MN d g s gnd nn W='W' L='L'
+.ENDS NMOS
+
+.SUBCKT PMOS d g s W=10u L=1u
+MP d g s vdd pp W='W' L='L'
+.ENDS PMOS
+
+
+.global gnd vdd beta WW Lwid
+.param ABN =0
+.param AVT0N=0
+.param WW=0.16u
+.param Lwid=0.08u
+
+.param sup=1
+.param gnd=0
+
+.param per=800ps
+.param pert = 30ps
+.param rt =10ps
+
+
+vgnd gnd 0 0
+vdd vdd gnd 'sup'
+
+*PULSE v1 v2 td rise_time fall_time pw period
+Vcin cin gnd 0
+Vclk clk gnd pulse 0 'sup' 500ps 'rt' 'rt' '0.5*per -rt' 'per'
+
+*// 0101 * 1110 = 0100 0110
+*// 1110 * 1010 = 1000 1100
+*// 1101 * 0110 = 1001 1100
+*// 1011 * 1001 = 0110 0011
+Va0 a0 gnd pulse 'sup' 'sup' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+Va1 a1 gnd pulse 'sup' 'gnd' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+Va2 a2 gnd pulse 'gnd' 'sup' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+Va3 a3 gnd pulse 'sup' 'gnd' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+
+Vb0 b0 gnd pulse 'gnd' 'sup' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+Vb1 b1 gnd pulse 'sup' 'gnd' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+Vb2 b2 gnd pulse 'sup' 'gnd' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+Vb3 b3 gnd pulse 'gnd' 'sup' 500ps 'rt' 'rt' '0.5*50n -rt' 50n
+
+*Vclk cin gnd pulse '0' 'sup' 500ps 'rt' 'rt' '0.5*per -rt' 'per'
+*vdata din gnd pulse 0 'sup' '500ps+elVar' 'rt' 'rt' '2*per -rt' '4*per'
+
+xmul a0 a1 a2 a3 b0 b1 b2 b3 cin clk gnd s0 s1 s2 s3 s4 s5 s6 s7 _4bit_multiplier
+.include 4bit_multiplier.spi
+.tran 1p 200ns
+*.step param elVar -220ps 220ps 5ps
+*.meas clkQ  trig v(clk) val= 0.5 * sup rise = 1 targ v(qqq) val =0.5*sup rise =1
+*.meas dinQ  trig v(din) val= 0.5 * sup rise = 1 targ v(qqq) val =0.5*sup rise =1

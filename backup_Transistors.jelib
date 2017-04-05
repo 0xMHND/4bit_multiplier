@@ -1,0 +1,110 @@
+# header information:
+Hbackup_Transistors|9.07
+
+# Views:
+Vicon|ic
+Vschematic|sch
+
+# Tools:
+Ouser|DefaultTechnology()SSOI13|SoftTechnologies()S/Users/mrsfairb/Documents/IBM/hspice/SRAM/IBMSOI12.xml
+
+# Cell NMOS;1{ic}
+CNMOS;1{ic}||artwork|1021415734000|1485702735841|E|ATTR_L(D5G1;HNOLPX3.25;Y-0.25;)S2|ATTR_W(D6FLeave alone;G1;HNOLPX1.75;Y0.75;)S3|prototype_center()I[0,0]
+Ngeneric:Facet-Center|art@0||0|0||||AV
+Ngeneric:Invisible-Pin|pin@5||0|-2||||
+NPin|pin@6||-1.5|0|1|1|RR|
+NPin|pin@7||-3|0|||RR|
+Nschematic:Bus_Pin|pin@8||-3|0|-2|-2||
+Nschematic:Bus_Pin|pin@9||0|2|-2|-2||
+NPin|pin@10||0|-2||||
+NPin|pin@11||-1.5|1|1|1||
+NPin|pin@12||-1.5|-1|1|1||
+NPin|pin@13||0|-1||||
+NPin|pin@14||-0.75|-1|1|1||
+NPin|pin@15||-0.75|1|1|1||
+NPin|pin@16||0|1||||
+NPin|pin@17||0|2||||
+AThicker|net@3|||FS900|pin@15||-0.75|1|pin@14||-0.75|-1|ART_color()I74
+AThicker|net@4|||FS1800|pin@7||-3|0|pin@6||-1.5|0|ART_color()I74
+AThicker|net@5|||FS900|pin@11||-1.5|1|pin@12||-1.5|-1|ART_color()I74
+AThicker|net@6|||FS900|pin@13||0|-1|pin@10||0|-2|ART_color()I74
+AThicker|net@7|||FS1800|pin@14||-0.75|-1|pin@13||0|-1|ART_color()I74
+AThicker|net@8|||FS0|pin@16||0|1|pin@15||-0.75|1|ART_color()I74
+AThicker|net@9|||FS900|pin@17||0|2|pin@16||0|1|ART_color()I74
+Ed||D5G1;|pin@9||B
+Eg||D5G1;|pin@8||I
+Es||D5G1;|pin@5||B
+X
+
+# Cell NMOS;1{sch}
+CNMOS;1{sch}||schematic|1021415734000|1489795541639||ATTR_L(HOLP)S2|ATTR_W(D5FLeave alone;G1;HNOLPX-18;Y-10.5;)S3|ATTR_CDL_template(D5G1;NTX-3.5;Y-24;)SM$(node_name) $(d) $(g) $(s) $(b) nch W='$(W)*0.05u' L='$(L)*0.05u'|ATTR_SPICE_template(D5G1;NTX2.5;Y-19.5;)SX$(node_name) $(d) $(g) $(s) NMOS W='WW*$(W)*(1+ABN/sqrt(WW*$(W)*(Lwid)))' L='(Lwid)' DELVTO='AVT0N/sqrt(WW*$(W)*(Lwid))'|ATTR_SPICE_template_smartspice(D5G1;NTX-2;Y-17.5;)SM$(node_name) $(d) $(g) $(s) $(b) nch W='$(W)' L='$(L)'|ATTR_verilog_template(D5G1;NTX-6;Y-21.5;)Stranif1 #($(Delay)) $(node_name) ($(d), $(s), $(g));|prototype_center()I[0,0]
+INMOS;1{ic}|NMOS@0||18.5|1|||D0G4;|ATTR_L(D5G1;NOLPX3.25;Y-0.25;)S2|ATTR_W(D6FLeave alone;G1;NOLPX2.25;Y0.75;)S3
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@1||4.5|-12.5||||
+NOff-Page|conn@2||4.5|0||||
+NOff-Page|conn@3||-18.5|-6.5||||
+NGround|gnd@0||9.5|-9.5||||
+N4-Port-Transistor|nmos4p@0||-2|-6.5|||R||ATTR_length(D5FLeave alone;G1;OLX-1;Y1;)S"P(\"L\")"|ATTR_width(D5FLeave alone;G1.5;OLX0.5;Y-1;)S"P(\"W\")"|SIM_spice_model(D5G1;X1.5;Y-3;)Snch
+NWire_Pin|pin@1||0|-12.5||||
+NWire_Pin|pin@2||0|0||||
+Awire|net@0|||0|nmos4p@0|g|-3|-6.5|conn@3|y|-16.5|-6.5
+Awire|net@2|||900|nmos4p@0|s|0|-8.5|pin@1||0|-12.5
+Awire|net@3|||1800|pin@1||0|-12.5|conn@1|a|2.5|-12.5
+Awire|net@4|||1800|pin@2||0|0|conn@2|a|2.5|0
+Awire|net@5|||900|pin@2||0|0|nmos4p@0|d|0|-4.5
+Awire|net@6|||1800|nmos4p@0|b|0|-7.5|gnd@0||9.5|-7.5
+Ed||D5G2;|conn@2|y|B
+Eg||D5G2;|conn@3|a|I
+Es||D5G2;|conn@1|y|B
+X
+
+# Cell PMOS;1{ic}
+CPMOS;1{ic}||artwork|1021415734000|1485836311986|E|ATTR_L(D5FLeave alone;G1;HNOLPX3.5;)S2|ATTR_W(D6FLeave alone;G1;HNOLPX2;Y1;)S3|prototype_center()I[0,0]
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NThick-Circle|art@1||-2|0|1|1|||ART_color()I74
+Ngeneric:Invisible-Pin|pin@4||0|2||||
+Nschematic:Bus_Pin|pin@6||0|-2|-2|-2||
+Nschematic:Bus_Pin|pin@7||-3|0|-2|-2||
+NPin|pin@8||0|1||||
+NPin|pin@9||-0.75|1|1|1||
+NPin|pin@10||-0.75|-1|1|1||
+NPin|pin@11||0|-1||||
+NPin|pin@12||0|-2||||
+NPin|pin@13||-3|0|||RR|
+NPin|pin@14||-2.5|0|1|1|RR|
+NPin|pin@15||0|2||||
+NPin|pin@16||-1.5|-1|1|1||
+NPin|pin@17||-1.5|1|1|1||
+AThicker|net@3|||FS0|pin@8||0|1|pin@9||-0.75|1|ART_color()I74
+AThicker|net@4|||FS1800|pin@10||-0.75|-1|pin@11||0|-1|ART_color()I74
+AThicker|net@5|||FS1800|pin@13||-3|0|pin@14||-2.5|0|ART_color()I74
+AThicker|net@6|||FS2700|pin@8||0|1|pin@15||0|2|ART_color()I74
+AThicker|net@7|||FS900|pin@11||0|-1|pin@12||0|-2|ART_color()I74
+AThicker|net@8|||FS900|pin@9||-0.75|1|pin@10||-0.75|-1|ART_color()I74
+AThicker|net@9|||FS900|pin@17||-1.5|1|pin@16||-1.5|-1|ART_color()I74
+Ed||D5G1;|pin@6||B
+Eg||D5G1;|pin@7||I
+Es||D5G1;|pin@4||B
+X
+
+# Cell PMOS;1{sch}
+CPMOS;1{sch}||schematic|1021415734000|1489795550970||ATTR_L(HOLP)S2|ATTR_W(D5FLeave alone;G1;HNOLPX-8.75;Y2;)S3|ATTR_CDL_template(D5G1;NTX2;Y-13;)SM$(node_name) $(d) $(g) $(s) $(b) pch W='$(W)*0.05u' L='$(L)*0.05u'|ATTR_SPICE_template(D5G1;NTX2;Y-9.5;)SX$(node_name) $(d) $(g) $(s)  PMOS W='WW*$(W)*(1+ABN/sqrt(WW*$(W)*(Lwid)))' L='(Lwid)' DELVTO='AVT0N/sqrt(WW*$(W)*(Lwid))'|ATTR_SPICE_template_calibre(D5G1;NTX2.5;Y-15;)SM$(node_name) $(d) $(g) $(s) $(b) pch W='$(W)*0.05u' L='$(L)*0.05u'|ATTR_SPICE_template_smartspice(D5G1;NTX1;Y-7;)SM$(node_name) $(d) $(g) $(s) $(b) pch W='$(W)' L='$(L)'|ATTR_verilog_template(D5G1;NTX1;Y-11;)Stranif0 #($(Delay)) $(node_name) ($(d), $(s), $(g));|prototype_center()I[0,0]
+IPMOS;1{ic}|PMOS@0||17.25|10.5|||D0G4;|ATTR_L(D5FLeave alone;G1;NOLPX3.5;)S2|ATTR_W(D6FLeave alone;G1;NOLPX2.5;Y1;)S3
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@0||5|11.5||||
+NOff-Page|conn@2||-12|7||||
+NOff-Page|conn@3||5|1||||
+NWire_Pin|pin@0||0|11.5||||
+NWire_Pin|pin@1||0|1||||
+N4-Port-Transistor|pmos4p@0||-2|7|||YR|2|ATTR_length(D5FLeave alone;G1;OLX1.5;)S"P(\"L\")"|ATTR_width(D5FLeave alone;G1.5;OLX-0.5;Y-2;)S"P(\"W\")"|SIM_spice_model(D5G1;X1.5;Y-3;)Spch
+NPower|pwr@0||6|8||||
+Awire|net@0|||0|pmos4p@0|g|-3|7|conn@2|y|-10|7
+Awire|net@1|||1800|pin@0||0|11.5|conn@0|a|3|11.5
+Awire|net@2|||2700|pmos4p@0|s|0|9|pin@0||0|11.5
+Awire|net@4|||0|conn@3|a|3|1|pin@1||0|1
+Awire|net@5|||2700|pin@1||0|1|pmos4p@0|d|0|5
+Awire|net@6|||0|pwr@0||6|8|pmos4p@0|b|0|8
+Ed||D5G2;|conn@3|y|B
+Eg||D5G2;|conn@2|a|I
+Es||D5G2;|conn@0|y|B
+X

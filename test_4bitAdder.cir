@@ -1,0 +1,52 @@
+
+*
+.include 90nmModels.spi
+
+*.include 22nm.spi
+*.param sup=0.7
+*.param Lwid=0.02u
+
+.SUBCKT NMOS d g s W=5u L=1u
+MN d g s gnd nn W='W' L='L'
+.ENDS NMOS
+
+.SUBCKT PMOS d g s W=10u L=1u
+MP d g s vdd pp W='W' L='L'
+.ENDS PMOS
+
+
+.global gnd vdd beta WW Lwid
+.param ABN =0
+.param AVT0N=0
+.param WW=0.12u
+.param Lwid=0.08u
+
+.param per=400ps
+.param pert = 30ps
+.param rt =10ps
+
+.param sup=1
+.param gnd=0
+
+vgnd gnd 0 0
+vdd vdd gnd 'sup'
+*PULSE v1 v2 td rise_time fall_time pw period
+Vcin cin gnd 0
+Va0 a0 gnd 1
+Va1 a1 gnd 1
+Va2 a2 gnd 1
+Va3 a3 gnd 1
+
+Vb0 b0 gnd pulse 0 'sup' 2ns 'rt' 'rt' 150ns 200s
+Vb1 b1 gnd 0
+Vb2 b2 gnd 0
+Vb3 b3 gnd 0
+*Vclk cin gnd pulse '0' 'sup' 500ps 'rt' 'rt' '0.5*per -rt' 'per'
+*vdata din gnd pulse 0 'sup' '500ps+elVar' 'rt' 'rt' '2*per -rt' '4*per'
+
+
+.include test_4bitAdder.spi
+.tran 1p 500ns
+*.step param elVar -220ps 220ps 5ps
+*.meas clkQ  trig v(clk) val= 0.5 * sup rise = 1 targ v(qqq) val =0.5*sup rise =1
+*.meas dinQ  trig v(din) val= 0.5 * sup rise = 1 targ v(qqq) val =0.5*sup rise =1
